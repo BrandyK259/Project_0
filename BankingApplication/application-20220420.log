@@ -1,0 +1,15 @@
+2022-04-20 16:13:52.713 [main] DEBUG revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:13:52.753 [main] INFO  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:13:52.756 [main] WARN  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:13:52.758 [main] ERROR revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:13:52.760 [main] FATAL revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:23:06.722 [main] DEBUG revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:23:06.755 [main] INFO  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:23:06.759 [main] WARN  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:23:06.762 [main] ERROR revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:23:06.765 [main] FATAL revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:24:42.285 [main] DEBUG revature.BankingApplication.App - We've just greeted the user8 times!
+2022-04-20 16:24:42.309 [main] INFO  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:24:42.310 [main] WARN  revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:24:42.312 [main] ERROR revature.BankingApplication.App - We've just greeted the user!
+2022-04-20 16:24:42.314 [main] FATAL revature.BankingApplication.App - We've just greeted the user!
