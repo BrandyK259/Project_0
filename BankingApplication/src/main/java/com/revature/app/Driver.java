@@ -87,9 +87,9 @@ public class Driver {
 
             System.out.println("Please enter your credentials");
             System.out.println("Username: ");
-            String username = sc.nextLine();
+            String username = sc.next();
             System.out.println("Password: ");
-            String password = sc.nextLine();
+            String password = sc.next();
 
             CustomerDAOImpl dao = new CustomerDAOImpl();
             c = dao.retrieve(username,password);
@@ -136,9 +136,9 @@ public class Driver {
 
             System.out.println("Please enter your credentials");
             System.out.println("Username: ");
-            String username = sc.nextLine();
+            String username = sc.next();
             System.out.println("Password: ");
-            String password = sc.nextLine();
+            String password = sc.next();
 
             EmployeeDAOImpl dao = new EmployeeDAOImpl();
             e = dao.retrieve(username,password);
@@ -184,9 +184,9 @@ public class Driver {
 
             System.out.println("Please enter your credentials");
             System.out.println("Username: ");
-            String username = sc.nextLine();
+            String username = sc.next();
             System.out.println("Password: ");
-            String password = sc.nextLine();
+            String password = sc.next();
 
             AdminDAOImpl dao = new AdminDAOImpl();
             a = dao.retrieve(username,password);

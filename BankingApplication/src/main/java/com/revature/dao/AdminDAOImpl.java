@@ -91,7 +91,7 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
                     "SELECT * " +
                             "FROM admins " +
                             "WHERE username = ?" +
-                            "AND" +
+                            "AND " +
                             "password = ?");
 
             query.setString(1,username);

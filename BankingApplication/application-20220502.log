@@ -6,3 +6,4 @@
 2022-05-02 01:12:20.437 [JettyServerThreadPool-29] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.
 2022-05-02 01:12:24.316 [JettyServerThreadPool-20] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.
 2022-05-02 01:12:25.697 [JettyServerThreadPool-25] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.
+2022-05-02 09:49:58.600 [main] ERROR revature.BankingApplication.App - An error has occurred whilst retrieving this Customer's information.

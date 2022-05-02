@@ -105,7 +105,7 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
                     "SELECT * " +
                             "FROM customers " +
                             "WHERE username = ? " +
-                            "AND" +
+                            "AND " +
                             "password = ?");
 
             query.setString(1,username);

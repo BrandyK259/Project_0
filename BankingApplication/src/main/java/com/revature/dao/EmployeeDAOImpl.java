@@ -99,7 +99,7 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
                     "SELECT * " +
                             "FROM employees " +
                             "WHERE username = ?" +
-                            "AND" +
+                            "AND " +
                             "password = ?");
 
             query.setString(1,username);
