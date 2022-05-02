@@ -97,6 +97,50 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
          return null;
     }
 
+    public Customer retrieve(String username, String password) {
+        Connection conn = ConnectionManager.getConnection();
+
+        try{
+            PreparedStatement query = conn.prepareStatement(
+                    "SELECT * " +
+                            "FROM customers " +
+                            "WHERE username = ? " +
+                            "AND" +
+                            "password = ?");
+
+            query.setString(1,username);
+            query.setString(2,password);
+
+            ResultSet rs = query.executeQuery();
+
+            //get result from query
+            if (rs.next()) {
+                Customer c = new Customer();
+                c.username = rs.getString("username");
+                c.password = rs.getString("password");
+                c.firstName = rs.getString("first_name");
+                c.lastName = rs.getString("last_name");
+                c.email = rs.getString("email");
+                c.checkingAcctId = rs.getInt("checking_acct_id");
+                c.savingsAcctId = rs.getInt("savings_acct_id");
+                c.jointAcctId = rs.getInt("joint_acct_id");
+
+                logger.info("User information for Customer "+c.firstName+" "+c.lastName+", has been found.");
+                return c;
+            }
+
+            //query returned nothing
+            logger.info("User information for this Customer has not been found.");
+            return null;
+        }catch(Exception e){
+
+            e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Customer's information.");
+        }
+
+        return null;
+    }
+
     @Override
     public void update(Customer c) {
         Connection conn = ConnectionManager.getConnection();

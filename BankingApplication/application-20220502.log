@@ -1,0 +1,8 @@
+2022-05-02 01:09:58.526 [main] DEBUG revature.BankingApplication.App - Testing logging
+2022-05-02 01:09:58.529 [main] INFO  revature.BankingApplication.App - Testing logging
+2022-05-02 01:09:58.529 [main] WARN  revature.BankingApplication.App - Testing logging!
+2022-05-02 01:09:58.529 [main] ERROR revature.BankingApplication.App - Testing logging
+2022-05-02 01:09:58.529 [main] FATAL revature.BankingApplication.App - Testing logging
+2022-05-02 01:12:20.437 [JettyServerThreadPool-29] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.
+2022-05-02 01:12:24.316 [JettyServerThreadPool-20] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.
+2022-05-02 01:12:25.697 [JettyServerThreadPool-25] INFO  revature.BankingApplication.App - User information for Employee Brandy Kuhnhenn, has been found.

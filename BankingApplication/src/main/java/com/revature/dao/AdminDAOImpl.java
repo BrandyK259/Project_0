@@ -84,7 +84,43 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
         }
         return null;
     }
+    public Admin retrieve(String username, String password) {
+        Connection conn = ConnectionManager.getConnection();
+        try{
+            PreparedStatement query = conn.prepareStatement(
+                    "SELECT * " +
+                            "FROM admins " +
+                            "WHERE username = ?" +
+                            "AND" +
+                            "password = ?");
 
+            query.setString(1,username);
+            query.setString(2,password);
+
+            ResultSet rs = query.executeQuery();
+
+            //get result from query
+            if (rs.next()) {
+                Admin a = new Admin();
+                a.username = rs.getString("username");
+                a.password = rs.getString("password");
+                a.firstName = rs.getString("first_name");
+                a.lastName = rs.getString("last_name");
+                a.currCustomerUn = rs.getString("curr_customer_un");
+                a.jointCustomerUn = rs.getString("joint_customer_un");
+
+                logger.info("User information for Bank Administrator "+a.firstName+" "+a.lastName+", has been found.");
+                return a;
+            }
+            //query returned nothing
+            logger.info("User information for this Bank Administrator has not been found.");
+            return null;
+        }catch(Exception e){
+            e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Bank Administrator's information.");
+        }
+        return null;
+    }
     @Override
     public void update(Admin a) {
         Connection conn = ConnectionManager.getConnection();

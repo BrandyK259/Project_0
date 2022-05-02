@@ -91,6 +91,45 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
         return null;
     }
 
+    public Employee retrieve(String username, String password) {
+        Connection conn = ConnectionManager.getConnection();
+        try{
+
+            PreparedStatement query = conn.prepareStatement(
+                    "SELECT * " +
+                            "FROM employees " +
+                            "WHERE username = ?" +
+                            "AND" +
+                            "password = ?");
+
+            query.setString(1,username);
+            query.setString(2,password);
+
+            ResultSet rs = query.executeQuery();
+
+            //get result from query
+            if (rs.next()) {
+                Employee e = new Employee();
+                e.username = rs.getString("username");
+                e.password = rs.getString("password");
+                e.firstName = rs.getString("first_name");
+                e.lastName = rs.getString("last_name");
+                e.currCustomerUn = rs.getString("curr_customer_un");
+                e.jointCustomerUn = rs.getString("joint_customer_un");
+
+                logger.info("User information for Employee "+e.firstName+" "+e.lastName+", has been found.");
+                return e;
+            }
+            //query returned nothing
+            logger.info("User information for this Employee has not been found.");
+            return null;
+        }catch(Exception e){
+
+            e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Employee's information.");
+        }
+        return null;
+    }
     @Override
     public void update(Employee e) {
         Connection conn = ConnectionManager.getConnection();
