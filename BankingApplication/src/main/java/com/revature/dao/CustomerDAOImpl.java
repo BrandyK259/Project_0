@@ -1,6 +1,9 @@
 package com.revature.dao;
 
 import com.revature.model.Customer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import revature.BankingApplication.App;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +26,7 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
      *          [joint_acct_id][int] null
      */
 
+    private static final Logger logger = LogManager.getLogger(App.class);
     @Override
     public void create(Customer c) {
         Connection conn = ConnectionManager.getConnection();
@@ -42,10 +46,12 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
             query.setInt(8,c.jointAcctId);
 
             query.execute();
+            logger.info("User information for Customer "+c.firstName+" "+c.lastName+",has been created.");
 
-        }catch(SQLException e){
+        }catch(Exception e){
 
             e.printStackTrace();
+            logger.error("An error has occurred whilst creating this Employee's information.");
         }
     }
 
@@ -74,14 +80,18 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
                 c.checkingAcctId = rs.getInt("checking_acct_id");
                 c.savingsAcctId = rs.getInt("savings_acct_id");
                 c.jointAcctId = rs.getInt("joint_acct_id");
+
+                logger.info("User information for Customer "+c.firstName+" "+c.lastName+", has been found.");
                 return c;
             }
 
             //query returned nothing
+            logger.info("User information for this Customer has not been found.");
             return null;
-        }catch(SQLException e){
+        }catch(Exception e){
 
             e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Customer's information.");
         }
 
          return null;
@@ -109,9 +119,11 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
             query.setString(8, c.username);
 
             query.executeUpdate();
+            logger.info("User information for Customer "+c.firstName+" "+c.lastName+", has been updated.");
 
-        }catch(SQLException e){
+        }catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst updating Customer "+c.firstName+" "+c.lastName+"'s information.");
         }
 
     }
@@ -128,9 +140,11 @@ public class CustomerDAOImpl implements DAOInterface <Customer, String> {
             query.setString(1, c.username);
 
             query.execute();
+            logger.info("User information for Customer "+c.firstName+" "+c.lastName+", has been deleted.");
 
-        } catch(SQLException e){
+        } catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst deleting Customer "+c.firstName+" "+c.lastName+"'s information.");
         }
     }
 }

@@ -1,6 +1,9 @@
 package com.revature.dao;
 
 import com.revature.model.Admin;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import revature.BankingApplication.App;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +23,7 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
      *          [curr_customer_un][varchar] null
      *          [joint_customer_un][varchar] null
      */
+    private static final Logger logger = LogManager.getLogger(App.class);
 
     @Override
     public void create(Admin a) {
@@ -38,10 +42,10 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
             query.setString(6,a.jointCustomerUn);
 
             query.execute();
-
-        }catch(SQLException e){
-
+            logger.info("User information for Bank Administrator "+a.firstName+" "+a.lastName+",has been created.");
+        }catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst creating this Bank Administrator's information.");
         }
     }
 
@@ -67,13 +71,16 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
                 a.lastName = rs.getString("last_name");
                 a.currCustomerUn = rs.getString("curr_customer_un");
                 a.jointCustomerUn = rs.getString("joint_customer_un");
+
+                logger.info("User information for Bank Administrator "+a.firstName+" "+a.lastName+", has been found.");
                 return a;
             }
             //query returned nothing
+            logger.info("User information for this Bank Administrator has not been found.");
             return null;
-        }catch(SQLException e){
-
+        }catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Bank Administrator's information.");
         }
         return null;
     }
@@ -98,9 +105,10 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
             query.setString(6, a.username);
 
             query.executeUpdate();
-
-        }catch(SQLException e){
+            logger.info("User information for Bank Administrator "+a.firstName+" "+a.lastName+",has been updated.");
+        }catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst updating Bank Administrator "+a.firstName+" "+a.lastName+"'s information.");
         }
     }
 
@@ -116,9 +124,11 @@ public class AdminDAOImpl implements DAOInterface <Admin, String>{
             query.setString(1, a.username);
 
             query.execute();
+            logger.info("User information for Bank Administrator "+a.firstName+" "+a.lastName+",has been deleted.");
 
-        } catch(SQLException e){
+        } catch(Exception e){
             e.printStackTrace();
+            logger.error("An error has occurred whilst deleting Bank Administrator "+a.firstName+" "+a.lastName+"'s information.");
         }
     }
 }

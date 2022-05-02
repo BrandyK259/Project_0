@@ -3,6 +3,9 @@ package com.revature.dao;
 import com.revature.model.Account;
 import com.revature.model.Admin;
 import com.revature.model.Employee;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import revature.BankingApplication.App;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +26,8 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
      *          [joint_customer_un][varchar] null
      */
 
+    private static final Logger logger = LogManager.getLogger(App.class);
+
     @Override
     public void create(Employee e) {
         Connection conn = ConnectionManager.getConnection();
@@ -40,10 +45,11 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
             query.setString(6,e.jointCustomerUn);
 
             query.execute();
+            logger.info("User information for Employee "+e.firstName+" "+e.lastName+",has been created.");
 
-        }catch(SQLException x){
-
+        }catch(Exception x){
             x.printStackTrace();
+            logger.error("An error has occurred whilst creating this Employee's information.");
         }
     }
 
@@ -70,13 +76,17 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
                 e.lastName = rs.getString("last_name");
                 e.currCustomerUn = rs.getString("curr_customer_un");
                 e.jointCustomerUn = rs.getString("joint_customer_un");
+
+                logger.info("User information for Employee "+e.firstName+" "+e.lastName+", has been found.");
                 return e;
             }
             //query returned nothing
+            logger.info("User information for this Employee has not been found.");
             return null;
-        }catch(SQLException e){
+        }catch(Exception e){
 
             e.printStackTrace();
+            logger.error("An error has occurred whilst retrieving this Employee's information.");
         }
         return null;
     }
@@ -101,9 +111,11 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
             query.setString(6, e.username);
 
             query.executeUpdate();
+            logger.info("User information for Employee "+e.firstName+" "+e.lastName+",has been updated.");
 
-        }catch(SQLException x){
+        }catch(Exception x){
             x.printStackTrace();
+            logger.error("An error has occurred whilst updating Employee "+e.firstName+" "+e.lastName+"'s information.");
         }
     }
 
@@ -119,9 +131,11 @@ public class EmployeeDAOImpl implements DAOInterface <Employee, String>{
             query.setString(1, e.username);
 
             query.execute();
+            logger.info("User information for Employee "+e.firstName+" "+e.lastName+",has been deleted.");
 
-        } catch(SQLException x){
+        } catch(Exception x){
             x.printStackTrace();
+            logger.error("An error has occurred whilst deleting Employee "+e.firstName+" "+e.lastName+"'s information.");
         }
     }
 }

@@ -11,8 +11,8 @@ public class Account {
      *        PK[id][int] serial
      *          [account_type][varchar] not null
      *          [balance][money] null
-     *          [approved][bool] null
-     *          [active][bool] null
+     *          [is_approved][bool] null
+     *          [is_active][bool] null
      *        FK[owner_username][varchar] null
      *        FK[joint_username][varchar] null
      */

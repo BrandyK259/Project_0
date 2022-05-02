@@ -2,7 +2,7 @@ package com.revature.app;
 
 import com.revature.model.Customer;
 
-public class EmployeeActions{
+public class EmployeeActions extends CustomerActions{
     //should be able to do everything that a customer can do
 
     //view customer info

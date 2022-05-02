@@ -1,7 +1,7 @@
 package com.revature.app;
 
 
-public class AdminActions{
+public class AdminActions extends EmployeeActions{
     //everything that a customer can do
 
     //everything that an employee can do
